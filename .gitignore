@@ -3,6 +3,8 @@
 .swiftpm/
 DerivedData/
 build/
+!apps/web/build/
+!apps/web/build/sites-vite-plugin.ts
 *.xcodeproj/
 *.xcworkspace/xcuserdata/
 *.xcuserstate

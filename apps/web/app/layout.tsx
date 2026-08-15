@@ -6,6 +6,7 @@ const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://ai-limits.xusbadia.chatgpt.site"),
   title: "AI Limits — Your AI usage at a glance",
   description: "See Codex and Claude usage, reset times, and remaining capacity from one private iPhone dashboard.",
   openGraph: {
