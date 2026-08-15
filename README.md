@@ -25,7 +25,19 @@ npm test
 
 The Xcode project is generated from `project.yml` and is intentionally not committed.
 
+To exercise the complete iOS flow, including navigation and the disconnected state:
+
+```sh
+DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer xcodebuild \
+  -project AILimits.xcodeproj \
+  -scheme AILimits \
+  -destination 'platform=iOS Simulator,name=iPhone 17 Pro' test
+```
+
 ## Privacy
 
 Provider credentials never enter the shared snapshot. See `docs/privacy-and-security.md` for the data contract and threat model.
 
+## License
+
+MIT. OpenUsage-derived concepts retain their original notice in `ThirdPartyNotices`.

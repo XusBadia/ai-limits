@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  web:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm run lint:web
+      - run: npm run test:web
+      - run: npm audit --audit-level=moderate
+
+  apple:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - run: brew install xcodegen
+      - run: xcodegen generate
+      - name: Test Swift packages
+        run: |
+          swift test --package-path packages/core
+          swift test --package-path packages/collectors
+          swift test --package-path packages/sync
+      - name: Build iOS app and widgets
+        run: xcodebuild -quiet -project AILimits.xcodeproj -scheme AILimits -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO build
+      - name: Build macOS collector
+        run: xcodebuild -quiet -project AILimits.xcodeproj -scheme AILimitsCollector -destination 'platform=macOS' CODE_SIGNING_ALLOWED=NO build

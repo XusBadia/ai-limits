@@ -31,6 +31,8 @@ targets:
     sources:
       - apps/apple/Shared
       - apps/apple/iOS
+    resources:
+      - Config/PrivacyInfo.xcprivacy
     dependencies:
       - package: AILimitsCore
       - package: AILimitsSync
@@ -70,6 +72,8 @@ targets:
     sources:
       - apps/apple/Shared
       - apps/apple/macOS
+    resources:
+      - Config/PrivacyInfo.xcprivacy
     dependencies:
       - package: AILimitsCore
       - package: AILimitsCollectors
@@ -92,6 +96,8 @@ targets:
     platform: iOS
     sources:
       - apps/apple/Widgets
+    resources:
+      - Config/PrivacyInfo.xcprivacy
     dependencies:
       - package: AILimitsCore
       - package: AILimitsSync
