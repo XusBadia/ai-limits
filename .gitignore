@@ -1,0 +1,16 @@
+.DS_Store
+.build/
+.swiftpm/
+DerivedData/
+build/
+*.xcodeproj/xcuserdata/
+*.xcworkspace/xcuserdata/
+*.xcuserstate
+apps/web/node_modules/
+apps/web/.next/
+apps/web/dist/
+apps/web/.wrangler/
+apps/web/.dev.vars
+*.ipa
+*.xcarchive
+
