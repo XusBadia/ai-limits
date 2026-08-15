@@ -37,7 +37,7 @@ DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer xcodebuild \
 ## Install the beta
 
 1. Install the iPhone app from the TestFlight invitation.
-2. Download the signed and notarized [AI Limits Collector for Mac](https://github.com/XusBadia/ai-limits/releases/latest/download/AI-Limits-Collector-0.1.0.zip).
+2. Download the signed and notarized [AI Limits Collector for Mac](https://github.com/XusBadia/ai-limits/releases/download/v0.1.0/AI-Limits-Collector-0.1.0.zip).
 3. Move `AI Limits Collector.app` to Applications and open it. The gauge icon appears in the menu bar and refreshes every five minutes.
 4. Keep the Mac and iPhone signed into the same Apple Account for private CloudKit sync.
 

@@ -4,7 +4,7 @@ const providers = [
 ];
 
 const sourceURL = "https://github.com/xusbadia/ai-limits";
-const collectorURL = `${sourceURL}/releases/latest/download/AI-Limits-Collector-0.1.0.zip`;
+const collectorURL = `${sourceURL}/releases/download/v0.1.0/AI-Limits-Collector-0.1.0.zip`;
 
 function Mark({ compact = false }: { compact?: boolean }) {
   return (
