@@ -7,6 +7,7 @@ build/
 *.xcworkspace/xcuserdata/
 *.xcuserstate
 apps/web/node_modules/
+/node_modules/
 apps/web/.next/
 apps/web/dist/
 apps/web/.wrangler/
