@@ -23,6 +23,8 @@ test("server-renders the complete AI Limits launch page", async () => {
   assert.match(html, /Private iCloud sync/);
   assert.match(html, /Open source from the first commit/);
   assert.match(html, /Join the TestFlight/);
+  assert.match(html, /Download for Mac/);
+  assert.match(html, /releases\/latest\/download\/AI-Limits-Collector-0\.1\.0\.zip/);
   assert.doesNotMatch(html, /Your site is taking shape|react-loading-skeleton|codex-preview/);
 });
 

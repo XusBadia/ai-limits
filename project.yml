@@ -105,9 +105,16 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: me.badia.ailimits.collector
         PRODUCT_NAME: AI Limits Collector
         INFOPLIST_KEY_CFBundleDisplayName: AI Limits
+        INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.productivity
         INFOPLIST_KEY_LSUIElement: YES
         ENABLE_APP_SANDBOX: NO
+        ENABLE_HARDENED_RUNTIME: YES
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+      configs:
+        Release:
+          CODE_SIGN_STYLE: Manual
+          CODE_SIGN_IDENTITY: Developer ID Application
+          PROVISIONING_PROFILE_SPECIFIER: AI Limits Collector Developer ID v1
     scheme:
       testTargets: []
 

@@ -34,6 +34,15 @@ DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer xcodebuild \
   -destination 'platform=iOS Simulator,name=iPhone 17 Pro' test
 ```
 
+## Install the beta
+
+1. Install the iPhone app from the TestFlight invitation.
+2. Download the signed and notarized [AI Limits Collector for Mac](https://github.com/XusBadia/ai-limits/releases/latest/download/AI-Limits-Collector-0.1.0.zip).
+3. Move `AI Limits Collector.app` to Applications and open it. The gauge icon appears in the menu bar and refreshes every five minutes.
+4. Keep the Mac and iPhone signed into the same Apple Account for private CloudKit sync.
+
+The collector currently reads Codex and Claude sessions already present on the Mac. Sign in with their official clients first; AI Limits never stores or syncs their credentials.
+
 ## Privacy
 
 Provider credentials never enter the shared snapshot. See `docs/privacy-and-security.md` for the data contract and threat model.

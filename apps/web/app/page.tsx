@@ -4,6 +4,7 @@ const providers = [
 ];
 
 const sourceURL = "https://github.com/xusbadia/ai-limits";
+const collectorURL = `${sourceURL}/releases/latest/download/AI-Limits-Collector-0.1.0.zip`;
 
 function Mark({ compact = false }: { compact?: boolean }) {
   return (
@@ -188,8 +189,8 @@ export default function Home() {
           <h2>Your AI limits,<br />finally in your pocket.</h2>
         </div>
         <div>
-          <p>The TestFlight build is being prepared now. Follow the repository to get the first public invite.</p>
-          <a className="button button--white" href={sourceURL}>Follow the launch <Arrow /></a>
+          <p>The iPhone beta is live in TestFlight. Pair it with the signed Mac collector to publish usage through your private iCloud account.</p>
+          <a className="button button--white" href={collectorURL}>Download for Mac <Arrow /></a>
         </div>
       </section>
 

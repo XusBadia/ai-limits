@@ -6,13 +6,13 @@ import SwiftUI
 
 @main
 struct AILimitsCollectorApp: App {
-    @StateObject private var model = MacCollectorModel()
+    @NSApplicationDelegateAdaptor(CollectorAppDelegate.self) private var appDelegate
+    @StateObject private var model = MacCollectorModel.shared
 
     var body: some Scene {
         MenuBarExtra("AI Limits", systemImage: "gauge.with.dots.needle.67percent") {
             MacCollectorView(model: model)
                 .frame(width: 390, height: 520)
-                .task { await model.start() }
         }
         .menuBarExtraStyle(.window)
 
@@ -30,13 +30,22 @@ struct AILimitsCollectorApp: App {
 }
 
 @MainActor
+final class CollectorAppDelegate: NSObject, NSApplicationDelegate {
+    func applicationDidFinishLaunching(_ notification: Notification) {
+        Task { await MacCollectorModel.shared.start() }
+    }
+}
+
+@MainActor
 final class MacCollectorModel: ObservableObject {
+    static let shared = MacCollectorModel()
+
     @Published var envelope: SnapshotEnvelope?
     @Published var isRefreshing = false
     @Published var syncMessage = "Waiting"
 
     private let coordinator = CollectorCoordinator(collectors: [CodexCollector(), ClaudeCollector()])
-    private let local = SnapshotStoreFactory.local()
+    private let local = SnapshotStoreFactory.applicationSupport()
     private let cloud = CloudKitSnapshotTransport(containerIdentifier: SnapshotStoreFactory.cloudContainer)
     private var loop: Task<Void, Never>?
 
@@ -65,11 +74,16 @@ final class MacCollectorModel: ObservableObject {
         do {
             try await local.save(snapshot)
             envelope = snapshot
+        } catch {
+            envelope = snapshot
+            syncMessage = "Could not save locally"
+            return
+        }
+        do {
             try await cloud.prepare()
             try await cloud.upload(snapshot)
             syncMessage = "Synced just now"
         } catch {
-            envelope = snapshot
             syncMessage = "Saved locally · iCloud unavailable"
         }
     }
