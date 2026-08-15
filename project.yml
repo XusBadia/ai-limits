@@ -1,0 +1,108 @@
+name: AILimits
+options:
+  bundleIdPrefix: me.badia.ailimits
+  deploymentTarget:
+    iOS: "18.0"
+    macOS: "15.0"
+  createIntermediateGroups: true
+  generateEmptyDirectories: true
+
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    DEVELOPMENT_TEAM: 9L2TD7KVV9
+    CURRENT_PROJECT_VERSION: 1
+    MARKETING_VERSION: 0.1.0
+    GENERATE_INFOPLIST_FILE: YES
+    CODE_SIGN_STYLE: Automatic
+
+packages:
+  AILimitsCore:
+    path: packages/core
+  AILimitsCollectors:
+    path: packages/collectors
+  AILimitsSync:
+    path: packages/sync
+
+targets:
+  AILimits:
+    type: application
+    platform: iOS
+    sources:
+      - apps/apple/Shared
+      - apps/apple/iOS
+    dependencies:
+      - package: AILimitsCore
+      - package: AILimitsSync
+      - target: AILimitsWidgets
+    entitlements:
+      path: Config/iOS.entitlements
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: me.badia.ailimits
+        PRODUCT_NAME: AI Limits
+        INFOPLIST_KEY_CFBundleDisplayName: AI Limits
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents: YES
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        SUPPORTS_MACCATALYST: NO
+        TARGETED_DEVICE_FAMILY: "1,2"
+    scheme:
+      testTargets:
+        - AILimitsUITests
+
+  AILimitsUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - apps/apple/UITests
+    dependencies:
+      - target: AILimits
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: me.badia.ailimits.uitests
+        TEST_TARGET_NAME: AILimits
+
+  AILimitsCollector:
+    type: application
+    platform: macOS
+    sources:
+      - apps/apple/Shared
+      - apps/apple/macOS
+    dependencies:
+      - package: AILimitsCore
+      - package: AILimitsCollectors
+      - package: AILimitsSync
+    entitlements:
+      path: Config/macOS.entitlements
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: me.badia.ailimits.collector
+        PRODUCT_NAME: AI Limits Collector
+        INFOPLIST_KEY_CFBundleDisplayName: AI Limits
+        INFOPLIST_KEY_LSUIElement: YES
+        ENABLE_APP_SANDBOX: NO
+    scheme:
+      testTargets: []
+
+  AILimitsWidgets:
+    type: app-extension
+    platform: iOS
+    sources:
+      - apps/apple/Widgets
+    dependencies:
+      - package: AILimitsCore
+      - package: AILimitsSync
+    entitlements:
+      path: Config/Widgets.entitlements
+    info:
+      path: Config/Widgets-Info.plist
+      properties:
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: me.badia.ailimits.widgets
+        PRODUCT_NAME: AI Limits Widgets
+        INFOPLIST_KEY_CFBundleDisplayName: AI Limits
+        SKIP_INSTALL: YES

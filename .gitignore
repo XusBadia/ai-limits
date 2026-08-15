@@ -3,7 +3,7 @@
 .swiftpm/
 DerivedData/
 build/
-*.xcodeproj/xcuserdata/
+*.xcodeproj/
 *.xcworkspace/xcuserdata/
 *.xcuserstate
 apps/web/node_modules/
@@ -13,4 +13,3 @@ apps/web/.wrangler/
 apps/web/.dev.vars
 *.ipa
 *.xcarchive
-
