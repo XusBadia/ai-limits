@@ -5,16 +5,11 @@
     "apps/web"
   ],
   "scripts": {
-    "lint:anti-slop": "oxlint",
     "build:web": "npm --workspace apps/web run build",
     "test:web": "npm --workspace apps/web run test",
     "lint:web": "npm --workspace apps/web run lint",
     "test:swift": "DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer xcrun swift test --package-path packages/core && DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer xcrun swift test --package-path packages/collectors && DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer xcrun swift test --package-path packages/sync",
     "test": "npm run test:swift && npm run test:web",
     "generate:apple": "xcodegen generate"
-  },
-  "devDependencies": {
-    "@oxlint/plugins": "^1.78.0",
-    "oxlint": "^1.78.0"
   }
 }
